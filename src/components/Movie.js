@@ -7,7 +7,7 @@ const Movie = (props) => {
     const { id } = useParams();
     const { push } = useHistory();
 
-    const { movies } = props
+    const { movies, displayFavorites } = props
     const movie = movies.find(movie=>movie.id===Number(id));
 
     const deleteMovie = () => {
@@ -56,7 +56,8 @@ const Movie = (props) => {
 
 const mapStateToProps = state => {
     return {
-      movies: state.movies
+      movies: state.movieReducer.movies,
+      displayFavorites: state.favoritesReducer.displayFavorites
     }
 }
 export default connect(mapStateToProps, { deleteMovie })(Movie)
